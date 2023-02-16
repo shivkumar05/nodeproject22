@@ -924,9 +924,29 @@ let getProgress = async function (req, res) {
         })
     }
 };
+//=================================[Get All Coach's Users]==============================
+let getAllUsers = async function (req, res) {
+    try {
+        let userid = req.params.userId;
+
+        let allUser = await userModel.find({ academy_id: userid });
+
+        return res.status(200).send({
+            status: true,
+            msg: "Get All User's",
+            data: allUser
+        })
+    }
+    catch (error) {
+        return res.status(500).send({
+            status: false,
+            message: error.message
+        })
+    }
+}
 
 
 
 
-module.exports = { updateBat_Bow, getAssignedByDrills, AcademyLogin, createUser, userLogin, getContact, createBattings, updateBatting, createBowlings, updateBowling, createWickets, updateWicket, bow_bat, createRoutine, deleteRoutine, getRoutine, category, getCategory, getTags, tag, getMyDrills, readinessSurvey, createPowerTest, createStrengthTest, createAcademy, updateDrill, updatePassword, getPastDrill, getPersonal, getProgress, getUsers }
+module.exports = { getAllUsers, updateBat_Bow, getAssignedByDrills, AcademyLogin, createUser, userLogin, getContact, createBattings, updateBatting, createBowlings, updateBowling, createWickets, updateWicket, bow_bat, createRoutine, deleteRoutine, getRoutine, category, getCategory, getTags, tag, getMyDrills, readinessSurvey, createPowerTest, createStrengthTest, createAcademy, updateDrill, updatePassword, getPastDrill, getPersonal, getProgress, getUsers }
 

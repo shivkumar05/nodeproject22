@@ -34,6 +34,7 @@ Router.post("/AcademyLogin", battingController.AcademyLogin)
 Router.get("/:userId/getPastDrill", commnMid.jwtValidation, commnMid.authorization, battingController.getPastDrill)
 Router.get("/:userId/getAssignedBydrills", commnMid.jwtValidation, commnMid.authorization, battingController.getAssignedByDrills)
 Router.put("/:userId/updateBat_Bow", commnMid.jwtValidation, commnMid.authorization, battingController.updateBat_Bow)
+Router.get("/:userId/getAllUsers", commnMid.jwtValidation, commnMid.authorization, battingController.getAllUsers)
 
 //===================== checking your end point valid or not =======================//
 Router.all("/**", function (req, res) {
