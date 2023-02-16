@@ -73,6 +73,7 @@ app.put("/:userId/UpdateProfile", commnMid.jwtValidation, commnMid.authorization
         let { image, dob, gender, email, contact, height, weight } = data;
 
         data.image = `/image/${file.filename}`;
+        console.log(data.image, "22222")
 
         let user = await userprofile.findOneAndUpdate({ userId: userid }, {
             $set: { dob: data.dob, gender: data.gender, email: data.email, contact: data.contact, height: data.height, weight: data.weight, image: data.image }

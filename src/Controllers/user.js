@@ -969,9 +969,38 @@ const updateCoachPassword = async function (req, res) {
         })
     }
 }
+//=============[ get contact for coach ]================
+const getContactCoach = async function (req, res) {
+    try {
+        let email = req.body.email;
+
+        let user = await academy_coachModel.findOne({ email: email })
+
+        if (!user) {
+            return res.status(400).send({
+                status: false,
+                msg: "This Email are not Registered."
+            })
+        } else {
+            return res.status(200).send({
+                status: true,
+                msg: "Get Contact",
+                data: {
+                    phone: user.phone
+                }
+            })
+        }
+    }
+    catch (error) {
+        return res.status(500).send({
+            status: false,
+            msg: error.message
+        })
+    }
+};
 
 
 
 
-module.exports = { updateCoachPassword, getAllUsers, updateBat_Bow, getAssignedByDrills, AcademyLogin, createUser, userLogin, getContact, createBattings, updateBatting, createBowlings, updateBowling, createWickets, updateWicket, bow_bat, createRoutine, deleteRoutine, getRoutine, category, getCategory, getTags, tag, getMyDrills, readinessSurvey, createPowerTest, createStrengthTest, createAcademy, updateDrill, updatePassword, getPastDrill, getPersonal, getProgress, getUsers }
+module.exports = {getContactCoach, updateCoachPassword, getAllUsers, updateBat_Bow, getAssignedByDrills, AcademyLogin, createUser, userLogin, getContact, createBattings, updateBatting, createBowlings, updateBowling, createWickets, updateWicket, bow_bat, createRoutine, deleteRoutine, getRoutine, category, getCategory, getTags, tag, getMyDrills, readinessSurvey, createPowerTest, createStrengthTest, createAcademy, updateDrill, updatePassword, getPastDrill, getPersonal, getProgress, getUsers }
 

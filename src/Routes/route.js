@@ -32,6 +32,7 @@ Router.post("/:userId/StrengthTest", commnMid.jwtValidation, commnMid.authorizat
 Router.post("/academy/coach", battingController.createAcademy)
 Router.post("/AcademyLogin", battingController.AcademyLogin)
 Router.post("/updateCoachPassword", battingController.updateCoachPassword)
+Router.post("/getContactCoach", battingController.getContactCoach)
 Router.get("/:userId/getPastDrill", commnMid.jwtValidation, commnMid.authorization, battingController.getPastDrill)
 Router.get("/:userId/getAssignedBydrills", commnMid.jwtValidation, commnMid.authorization, battingController.getAssignedByDrills)
 Router.put("/:userId/updateBat_Bow", commnMid.jwtValidation, commnMid.authorization, battingController.updateBat_Bow)
