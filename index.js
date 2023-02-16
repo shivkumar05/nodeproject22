@@ -70,10 +70,12 @@ app.put("/:userId/UpdateProfile", commnMid.jwtValidation, commnMid.authorization
         let file = req.file;
         let userid = req.params.userId;
 
+        let { image, dob, gender, email, contact, height, weight } = data;
+
         data.image = `/image/${file.filename}`;
 
         let user = await userprofile.findOneAndUpdate({ userId: userid }, {
-            $set: { image: data.image, dob: data.dob, gender: data.gender, email: data.email, contact: data.contact, height: data.height, weight: data.weight }
+            $set: { dob: data.dob, gender: data.gender, email: data.email, contact: data.contact, height: data.height, weight: data.weight, image: data.image }
         }, { new: true });
 
         return res.status(200).send({
@@ -458,7 +460,7 @@ app.post("/:userId/academyProfile", commnMid.jwtValidation, commnMid.authorizati
         data.image = `/image/${file.filename}`;
         data.userId = userid;
 
-        let user2 = await academy_coachModel.findById({ _id: userid});
+        let user2 = await academy_coachModel.findById({ _id: userid });
 
         if (user2.academy_name == null) {
             let user = await academy_coachModel.findByIdAndUpdate({ _id: userid }, { academy_name: data.admin_name }, { new: true });
